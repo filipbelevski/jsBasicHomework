@@ -12,8 +12,6 @@ let dayNow = dateNow.getDate();
 let monthNow = dateNow.getMonth() +1;
 let yearNow = dateNow.getFullYear();
 
-// od ko mi tekna da go pretvoram dateInputot od string vo number posle lesno odeshe, edinstveno sega e problem sho mora inputot od userot da e mm/dd/yyyy, naredno update kje napram so <input type="date"> vo html pa taka da kalkulira, vejke na predhodnata vezba od predhodniot cas problemot so telefonite go reshiv taka pa kje pushtam update nov zaedno i so drugite domasni.
-
 let stringDay = parseInt(dateInput[2]);
 let stringMonth = parseInt(dateInput[1]);
 let stringYear = parseInt(dateInput[3]);
@@ -22,19 +20,35 @@ let calcYear = yearNow - stringYear;
 let calcDay = dayNow - stringDay;
 let calcMonth = monthNow - stringMonth;
 
-if (calcYear >= 18 && dayNow === stringDay && monthNow === stringMonth){
-    alert("sreken rodenden, polnoleten si");
+
+if(calcYear >=18 && monthNow === stringMonth && dayNow === stringDay){
+    alert("Srejken rodenden, Polnoleten");
 }
-else if (calcYear >= 18 && calcMonth >=0 && calcDay >=0){
+else if (calcYear >= 18 && stringMonth <= monthNow && stringDay < dayNow){
     alert("polnoleten");
 }
+else if (calcYear >= 18 && stringMonth < monthNow){
+    alert("polnoleten")
+}
+else if (calcYear >18){
+    alert("polnoleten")
+}
+else if (calcYear <18 && monthNow === stringMonth && dayNow === stringDay){
+    alert("Srejken rodenden, Maloleten")
+}
+else if(calcYear <=18 && stringMonth >= monthNow && stringDay > dayNow){
+    alert("maloleten")
+}
+else if(calcYear <=18 && stringMonth > monthNow){
+    alert("maloleten")
+}
+else if (calcYear <18 || stringmonth != monthNow || dayNow != stringDay){
+    alert("maloleten")
+}
+else if(calcYear < 18){
+    alert("maloleten")
+}
 
-else if (calcYear < 18 && dayNow === stringDay && monthNow === stringMonth){
-    alert("srejken rodenden, maloleten si")
-}
-else{
-    alert("maloleten");
-}
 
 // Да се внесе бројка на роденден и да се провери дали е полнолетена особата?
 // 1. Внесувам прво месец, па ден, па година (пример 01231996)
