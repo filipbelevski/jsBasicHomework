@@ -124,6 +124,7 @@ function evenOdd(x, array ){
 evenOdd("even", evenOddArray);
 evenOdd("odd", evenOddArray);
 
+
 // HOMEWORK #6
 // Write a javascript function that:
 // When given any array of strings (should work with array with any number of elements)
