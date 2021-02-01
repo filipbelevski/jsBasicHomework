@@ -23,22 +23,83 @@ let existingUser = [
         isAdmin: false
     }
 ]
-document.getElementById("registerButton").addEventListener("click", function (){
-    function addToarray (username, password){
-        debugger;
-        let newUserName = document.getElementById("userName").value;
-        let newPassword = document.getElementById("userPassword").value;
-        if (username !== undefined && password !== undefined && username.length > 3 && password.length > 6){
-            existingUser.push({
-                username: newUserName,
-                password: newPassword,
-                isAdmin: false,
-            })
-        }console.log(existingUser)
+let newUserName = document.getElementById("userName");
+let newUserPassword = document.getElementById("userPassword");
+function userExists(){
+    for (let i = 0; i < existingUser.length; i++){
+        if (newUserName.value === existingUser[i].username){
+            return true    
+        }
     }
-    addToarray;
-    
+}
+
+document.getElementById("registerButton").addEventListener("click", function (){
+    if (newUserName.value !== undefined && newUserName.value.length > 2 && newUserPassword.value !== undefined && newUserPassword.value.length > 5){
+        userExists;
+        if(userExists()){
+            alert(`Username unavailable`);
+        }
+        else{
+            existingUser.push({
+                username: newUserName.value,
+                password: newUserPassword.value,
+                isAdmin: false
+            })
+        }
+    }
+    else {
+        alert(`username Min:3 chars, Password min: 6chars`)
+    }
 })
 
-console.log(existingUser)
+let newLoginUserName = document.getElementById("loginUserName");
+let newLoginPassword = document.getElementById("loginPassword");
+function userLogin(){
+    for (let i = 0; i < existingUser.length; i++){
+        if(newLoginUserName.value === existingUser[i].username && newLoginPassword.value === existingUser[i].password){
+            return true
+        }
+    }
+}
+function currentUserAdminCheck(){
+    for (let i = 0; i < existingUser.length; i++){
+        if(newLoginUserName.value === existingUser[i].username && existingUser[i].isAdmin === true){
+            return true
+        }
+    }
+}
 
+document.getElementById("loginButton").addEventListener("click", function (){
+    if(newLoginUserName.value !== undefined && newLoginUserName.value.length > 2 && newLoginPassword.value.length !== undefined && newLoginPassword.value.length > 5){
+        userLogin;
+        if(userLogin()){
+            alert(`Welcome back ${newLoginUserName.value}`)
+            currentUserAdminCheck;
+            if(currentUserAdminCheck()){
+                alert("You're admin, we'll print all usernames and passwords with admin status")
+                for (user of existingUser){
+                    document.getElementById("adminDiv").innerHTML +=
+                    (
+                        `
+                            <ul>
+                                    <li>Username: ${user.username}</li> <br / >
+                                    <li>Password:${user.password}</li> <br/ >
+                                    <li>Admin: ${user.isAdmin}</li> <br/ >
+                            </ul>
+                        `
+                    )
+                }
+            }
+        }
+        else{
+            alert("Invalid username or password")
+        }
+    }
+    else {
+        alert(`Invalid username or password`)
+    }
+})
+document.getElementById("logoutButton").addEventListener("click",function (){
+    document.body.innerHTML = `<h1>You have been logged out<h1> `
+
+})

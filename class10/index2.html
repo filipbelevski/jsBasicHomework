@@ -8,21 +8,24 @@
     <form action="">
         <fieldset>
             <label for="">Register</label>
-            <input type="text" id="userName" placeholder="User Name">
-            <input type="password" id="userPassword" placeholder="Password">
+            <input type="text" id="userName" placeholder="User Name" autocomplete="username">
+            <input type="password" id="userPassword" placeholder="Password" autocomplete="current-password">
             <button type="button" id="registerButton">Register</button>
         </fieldset>
     </form>
-
+    <br>
+    <br>
     <form action="">
         <fieldset>
             <label for="">Login</label>
-            <input type="text" placeholder ="User Name">
-            <input type="text" placeholder ="Password">
+            <input type="text" id="loginUserName" placeholder="User Name" autocomplete="username">
+            <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
             <button type="button" id="loginButton">Login</button>
         </fieldset>
     </form>
-    <div id="adminDiv"></div>
+    <div id="adminDiv">
+    </div>
+    <button type="button" id="logoutButton">Logout</button>
 
     <script src="./index2.js"></script>
 </body>
